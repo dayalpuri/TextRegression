@@ -13,7 +13,7 @@ Use the code below inside an R session to install the TextRegression package:
 
     install.packages('devtools')
     library('devtools')
-    install_github('TextRegression', username = 'johnmyleswhite')
+    install_github('dayalpuri/TextRegression')
 
 # Examples
 Try out this toy example to see how to perform a text regression:
