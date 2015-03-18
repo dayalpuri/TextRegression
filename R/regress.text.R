@@ -57,11 +57,11 @@ regress.text <- function(text,
   
   if (standardizeCase)
   {
-    corpus <- tm_map(corpus, tolower)
+    corpus <- tm_map(corpus, content_transformer(tolower))
   }
   if (stripSpace)
   {
-    corpus <- tm_map(corpus, stripWhitespace)
+    corpus <- tm_map(corpus, content_transformer(stripWhitespace))
   }
   if (removeStopwords)
   {
