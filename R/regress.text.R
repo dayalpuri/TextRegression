@@ -38,7 +38,10 @@ regress.text <- function(text,
                          size = 0.8,
                          standardizeCase = TRUE,
                          stripSpace = TRUE,
-                         removeStopwords = TRUE)
+                         removeStopwords = TRUE,
+                         removePunctuation = TRUE,
+                         removeNumbers = TRUE,
+                         stemming = TRUE)
 {
   # Fit regularized regressions to text data given corpus and outputs.
   # Provide text documents as vector x.
@@ -66,6 +69,18 @@ regress.text <- function(text,
   if (removeStopwords)
   {
     corpus <- tm_map(corpus, removeWords, stopwords('english'))
+  }
+  if (removePunctuation)
+  {
+    corpus <- tm_map(corpus, content_transformer(removePunctuation))
+  }
+  if (removeNumbers)
+  {
+    corpus <- tm_map(corpus, content_transformer(removeNumbers))
+  }
+  if (stemming)
+  {
+    corpus <- tm_map(corpus, content_transformer(stemDocument('english'))
   }
   
   dtm <- DocumentTermMatrix(corpus)
