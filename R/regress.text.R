@@ -80,7 +80,7 @@ regress.text <- function(text,
   }
   if (stemming)
   {
-    corpus <- tm_map(corpus, content_transformer(stemDocument)
+    corpus <- tm_map(corpus, content_transformer(stemDocument))
   }
   
   dtm <- DocumentTermMatrix(corpus)
