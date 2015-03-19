@@ -53,6 +53,16 @@ regress.text <- function(text,
 
   # Do you want coefficients as output?
   # Do you want RMSE on test data?
+  
+   if (removePunctuation)
+  {
+    text <- removePunctuation(text)
+  }
+  if (removeNumbers)
+  {
+    text <- removeNumbers(text)
+  }
+  
   documents <- data.frame(Text = text)
   row.names(documents) <- 1:nrow(documents)
   
@@ -69,14 +79,6 @@ regress.text <- function(text,
   if (removeStopwords)
   {
     corpus <- tm_map(corpus, removeWords, stopwords('english'))
-  }
-  if (removePunctuation)
-  {
-    corpus <- tm_map(corpus, content_transformer(removePunctuation))
-  }
-  if (removeNumbers)
-  {
-    corpus <- tm_map(corpus, content_transformer(removeNumbers))
   }
   if (stemming)
   {
